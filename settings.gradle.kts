@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GestorNovelas_BaseDatos"
+rootProject.name = "Feedback3"
 include(":app")

@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos
+package com.example.feedback3
 
 import android.os.Bundle
 import android.widget.Button
@@ -52,7 +52,7 @@ class NuevaNovelaActivity: ComponentActivity() {
         val nuevaNovela = Novela(titulo, autor, año, sinopsis, false)
         //creamos una nueva novela con sus correspondientes atributos
 
-        db.collection("novelas")
+        db.collection("dbNovelas")
             .add(nuevaNovela)
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "Novela guardada: ${nuevaNovela.titulo}", Toast.LENGTH_SHORT).show()

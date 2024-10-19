@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.gestornovelas_basedatos"
+    namespace = "com.example.feedback3"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.gestornovelas_basedatos"
+        applicationId = "com.example.feedback3"
         minSdk = 34
         targetSdk = 34
         versionCode = 1

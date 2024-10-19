@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos.ui.theme
+package com.example.feedback3.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

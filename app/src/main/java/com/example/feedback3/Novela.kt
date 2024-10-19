@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos
+package com.example.feedback3
 
 data class Novela(val titulo: String, val autor: String, val año: Int, val sinopsis: String, val fav: Boolean){
     constructor(): this("", "", 0, "", false)

@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos
+package com.example.feedback3
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

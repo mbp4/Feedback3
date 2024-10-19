@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos
+package com.example.feedback3
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
     //creamos una función que haga que la lista se actualice al volver a la actividad
 
     private fun mostrarNovelas() {
-        db.collection("novelas")
+        db.collection("dbNovelas")
             .get()
             .addOnSuccessListener { documentos ->
                 listadoNovelasF.clear()
@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun xFav(novela: Novela) {
-        db.collection("novelas")
+        db.collection("dbNovelas")
             .whereEqualTo("titulo", novela.titulo)
             .get()
             .addOnSuccessListener { documentos ->

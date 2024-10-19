@@ -1,6 +1,5 @@
-package com.example.gestornovelas_basedatos.ui.theme
+package com.example.feedback3.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

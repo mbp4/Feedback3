@@ -1,4 +1,4 @@
-package com.example.gestornovelas_basedatos
+package com.example.feedback3
 
 import android.os.Bundle
 import android.widget.Button
