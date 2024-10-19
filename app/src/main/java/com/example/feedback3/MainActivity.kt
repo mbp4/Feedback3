@@ -6,16 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var btnAlta: Button
     private lateinit var btnAcercaDe: Button
+    private lateinit var btnTema: ToggleButton
     private lateinit var recyclerNovelas: RecyclerView
     private lateinit var novelasAdapter: NovelasAdapter
     private var listadoNovelasF: MutableList<Novela> = mutableListOf()
@@ -37,8 +41,18 @@ class MainActivity : ComponentActivity() {
         btnAlta = findViewById(R.id.btnAlta)
         btnAcercaDe = findViewById(R.id.btnAcercaDe)
         recyclerNovelas = findViewById(R.id.recyclerNovelas)
-
+        btnTema = findViewById(R.id.btnTema)
         //asociamos a los botones el identificador del boton del layout
+
+        btnTema.setChecked(LoginActivity.modoOscuro)
+
+        btnTema.setOnClickListener {
+            if (btnTema.isChecked()) {
+                activarModo(true)
+            } else {
+                activarModo(false)
+            }
+        }
 
         btnAlta.setOnClickListener {
             val intent = Intent(this, NuevaNovelaActivity::class.java)
@@ -53,6 +67,25 @@ class MainActivity : ComponentActivity() {
 
         mostrarNovelas()
 
+    }
+
+    private fun activarModo(modoOscuro: Boolean) {
+        if (modoOscuro) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        delegate.applyDayNight()
+        LoginActivity.modoOscuro = modoOscuro
+        db.collection("dbUsuarios")
+            .whereEqualTo("mail", LoginActivity.mail)
+            .get()
+            .addOnSuccessListener { documentos ->
+                val id = documentos.documents[0].id
+                db.collection("dbUsuarios")
+                    .document(id)
+                    .update("modoOscuro", modoOscuro)
+            }
     }
 
     override fun onResume() {

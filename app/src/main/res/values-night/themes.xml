@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.GestorNovelas_BaseDatos" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:colorForeground">@color/white</item>
+        <item name="android:colorAccent">@color/white</item>
+    </style>
+
+</resources>

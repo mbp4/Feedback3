@@ -3,8 +3,9 @@ package com.example.feedback3
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class AcercaDeActivity: ComponentActivity(){
+class AcercaDeActivity: AppCompatActivity(){
     private lateinit var btnAceptar: Button //creamos un boton que asociaremos al boton de la vista
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="ficha">#A4E6EB</color>
-    <color name="texto">#013326</color>
+    <color name="ficha">#E91E63</color>
+    <color name="texto">#FFFFFF</color>
     <color name="boton">#000000</color>
 </resources>

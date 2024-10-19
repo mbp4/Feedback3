@@ -5,11 +5,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
-class NuevaNovelaActivity: ComponentActivity() {
+class NuevaNovelaActivity: AppCompatActivity() {
     private lateinit var btnGuardarNovela: Button
     private lateinit var btnCancelar: Button
     private lateinit var editTitulo: EditText

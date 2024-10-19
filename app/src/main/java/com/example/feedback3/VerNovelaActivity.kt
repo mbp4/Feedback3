@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class VerNovelaActivity: ComponentActivity() {
+class VerNovelaActivity: AppCompatActivity() {
     private lateinit var txt1: TextView
     private lateinit var txt2: TextView
     private lateinit var txt3: TextView
