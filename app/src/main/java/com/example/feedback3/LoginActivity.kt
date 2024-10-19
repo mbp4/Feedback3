@@ -24,10 +24,16 @@ class LoginActivity: AppCompatActivity() {
 
         val mail = findViewById<EditText>(R.id.editMail)
         val password = findViewById<EditText>(R.id.editPassword)
+        val registro = findViewById<Button>(R.id.btnRegistro)
 
         val loginButton = findViewById<Button>(R.id.btnIniciar)
         loginButton.setOnClickListener {
             hacerLogin(mail.text.toString(), password.text.toString())
+        }
+
+        registro.setOnClickListener {
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
         }
     }
 

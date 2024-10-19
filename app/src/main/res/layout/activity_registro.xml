@@ -15,29 +15,29 @@
         android:layout_width="439dp"
         android:layout_height="120dp"
         app:srcCompat="@drawable/user"
-         />
+        />
 
     <TextView
-        android:id="@+id/textMail"
+        android:id="@+id/textMail2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email" />
 
     <EditText
-        android:id="@+id/editMail"
+        android:id="@+id/editMail2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ingrese email"
         />
 
     <TextView
-        android:id="@+id/textPassword"
+        android:id="@+id/textPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Contraseña" />
 
     <EditText
-        android:id="@+id/editPassword"
+        android:id="@+id/editPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ingrese contraseña"
@@ -49,21 +49,19 @@
         android:orientation="horizontal"
         >
 
-    <Button
-        android:id="@+id/btnIniciar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Sesion" />
-
         <Button
-            android:id="@+id/btnRegistro"
+            android:id="@+id/btnAlta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registro usuario" />
+            android:text="Registrar" />
+
+        <Button
+            android:id="@+id/btnCancelar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
 
     </LinearLayout>
 
 
 </LinearLayout>
-
-
