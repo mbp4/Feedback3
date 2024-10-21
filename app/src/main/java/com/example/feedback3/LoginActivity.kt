@@ -36,6 +36,10 @@ class LoginActivity: AppCompatActivity() {
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
         }
+
+        if (SplashActivity.sesion){
+            Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun hacerLogin(mail: String, password: String) {

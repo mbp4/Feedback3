@@ -19,6 +19,7 @@ class AjustesActivity:AppCompatActivity() {
         btnMain = findViewById(R.id.btnMain)
         btnCerrar = findViewById(R.id.btnCerrarSesion)
         textoInfo = findViewById(R.id.textMailInfo)
+        SplashActivity.sesion = false
 
         val mail = LoginActivity.mail
         textoInfo.setText(mail).toString()

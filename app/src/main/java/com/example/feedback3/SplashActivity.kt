@@ -9,13 +9,16 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity: AppCompatActivity(){
     private lateinit var progreso: ProgressBar
     private lateinit var imagen: ImageView
     private lateinit var texto: TextView
+
+    companion object{
+        var sesion: Boolean = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +35,13 @@ class SplashActivity: AppCompatActivity(){
         imagen.startAnimation(fadeOut)
 
         Handler(Looper.getMainLooper()).postDelayed({
-
             progreso.visibility = View.GONE
-            Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3 segundos
+
+        SplashActivity.sesion = true
     }
 }

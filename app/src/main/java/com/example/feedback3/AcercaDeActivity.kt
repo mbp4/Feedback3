@@ -2,7 +2,6 @@ package com.example.feedback3
 
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 
 class AcercaDeActivity: AppCompatActivity(){

@@ -3,7 +3,6 @@ package com.example.feedback3
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 
 class VerNovelaActivity: AppCompatActivity() {
