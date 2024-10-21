@@ -25,6 +25,7 @@ class RegistroActivity: AppCompatActivity() {
         btnCancelar2 = findViewById(R.id.btnCancelar2)
         editmail2 = findViewById(R.id.editMail2)
         editpassword2 = findViewById(R.id.editPassword2)
+        editpassword2.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 
         btnAlta2.setOnClickListener {
             login()
@@ -40,29 +41,36 @@ class RegistroActivity: AppCompatActivity() {
     private fun login() {
         val mail = editmail2.text.toString()
         val password = editpassword2.text.toString()
-        val nuevoUsuario = Usuario(mail, password, false) //iniciamos el modo oscuro siempre a falso
 
-        db.collection("dbUsuarios")
-            .whereEqualTo("mail", mail)
-            .get()
-            .addOnSuccessListener { documentReference ->
-                if (documentReference.isEmpty) {
-                    Toast.makeText(this, "El mail: ${nuevoUsuario.mail}, ya esta registrado", Toast.LENGTH_SHORT).show()
-                    finish()
-                }else{
-                    db.collection("dbUsuarios")
-                        .add(nuevoUsuario)
-                        .addOnSuccessListener { documentReference ->
-                            Toast.makeText(this, "El usuario: ${nuevoUsuario.mail}, se ha registrado correctamente", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show()
-                        }
+        if (mail.isNotEmpty() && password.isNotEmpty()) {
+            db.collection("dbUsuarios")
+                .whereEqualTo("mail", mail)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        val nuevoUsuario = Usuario(mail, password, false)
+                        db.collection("dbUsuarios")
+                            .add(nuevoUsuario)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "El usuario ${nuevoUsuario.mail} se ha registrado correctamente", Toast.LENGTH_SHORT).show()
+
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+
+                        Toast.makeText(this, "El mail ${mail} ya está registrado", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al comprobar el usuario", Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error al comprobar el usuario", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "Por favor ingresa un correo y contraseña válidos", Toast.LENGTH_SHORT).show()
+        }
     }
 }
