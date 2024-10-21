@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity: AppCompatActivity(){
@@ -25,7 +26,7 @@ class SplashActivity: AppCompatActivity(){
         texto = findViewById(R.id.textoSesion)
 
         val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
-            duration = 2000
+            duration = 3000
             fillAfter = true
         }
         imagen.startAnimation(fadeOut)
@@ -33,7 +34,7 @@ class SplashActivity: AppCompatActivity(){
         Handler(Looper.getMainLooper()).postDelayed({
 
             progreso.visibility = View.GONE
-            texto.text = "Sesión cerrada."
+            Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
