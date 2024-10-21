@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnAlta: Button
     private lateinit var btnAcercaDe: Button
     private lateinit var btnTema: ToggleButton
+    private lateinit var btnConfig: ImageButton
     private lateinit var recyclerNovelas: RecyclerView
     private lateinit var novelasAdapter: NovelasAdapter
     private var listadoNovelasF: MutableList<Novela> = mutableListOf()
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         btnAcercaDe = findViewById(R.id.btnAcercaDe)
         recyclerNovelas = findViewById(R.id.recyclerNovelas)
         btnTema = findViewById(R.id.btnTema)
+        btnConfig = findViewById(R.id.btnAjustes)
         //asociamos a los botones el identificador del boton del layout
 
         btnTema.setChecked(LoginActivity.modoOscuro)
@@ -63,6 +66,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AcercaDeActivity::class.java)
             startActivity(intent)
             //boton que nos lleva a la actividad de acerca de
+        }
+
+        btnConfig.setOnClickListener {
+            val intent = Intent(this, AjustesActivity::class.java)
+            startActivity(intent)
         }
 
         mostrarNovelas()
