@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.material)
+    implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,6 +66,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation (libs.material.v160)
     implementation("com.google.android.gms:play-services-location:21.0.1")
-
-
+    implementation ("com.google.android.gms:play-services-auth:20.3.0")
 }

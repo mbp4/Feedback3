@@ -16,9 +16,12 @@ class AjustesActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configuracion)
 
-        btnMain = findViewById(R.id.btnCerrarSesion)
-        btnCerrar = findViewById(R.id.btnMain)
+        btnMain = findViewById(R.id.btnMain)
+        btnCerrar = findViewById(R.id.btnCerrarSesion)
         textoInfo = findViewById(R.id.textMailInfo)
+
+        val mail = LoginActivity.mail
+        textoInfo.setText(mail).toString()
 
         btnMain.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -27,7 +30,8 @@ class AjustesActivity:AppCompatActivity() {
 
         btnCerrar.setOnClickListener {
             Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }

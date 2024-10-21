@@ -39,25 +39,29 @@ class LoginActivity: AppCompatActivity() {
     }
 
     private fun hacerLogin(mail: String, password: String) {
-        db.collection("dbUsuarios")
-            .whereEqualTo("mail", mail)
-            .whereEqualTo("password", password)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
-                    Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
-                } else {
-                    // El usuario existe
-                    LoginActivity.modoOscuro = documents.documents[0].get("modoOscuro") as Boolean
-                    activarModo(LoginActivity.modoOscuro)
-                    LoginActivity.mail = mail
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+        if (mail.isNotEmpty() && password.isNotEmpty()) {
+            db.collection("dbUsuarios")
+                .whereEqualTo("mail", mail)
+                .whereEqualTo("password", password)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
+                    } else {
+                        LoginActivity.modoOscuro =
+                            documents.documents[0].get("modoOscuro") as Boolean
+                        activarModo(LoginActivity.modoOscuro)
+                        LoginActivity.mail = mail
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                }.addOnFailureListener { exception ->
+                    Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
                 }
-            }.addOnFailureListener { exception ->
-                Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
-            }
+        } else {
+            Toast.makeText(this, "Por favor, ingrese un correo electrónico y una contraseña", Toast.LENGTH_SHORT).show()
         }
+    }
 
     private fun activarModo(modoOscuro: Boolean) {
         if (modoOscuro) {

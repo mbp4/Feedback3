@@ -8,8 +8,6 @@
         android:id="@+id/textTituloAlta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="24sp"
         android:text="Nueva Novela" />
@@ -17,7 +15,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200"
         android:orientation="vertical">
 
         <EditText
