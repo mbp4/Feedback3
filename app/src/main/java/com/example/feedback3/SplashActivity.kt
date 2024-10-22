@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity: AppCompatActivity(){
@@ -36,12 +37,12 @@ class SplashActivity: AppCompatActivity(){
 
         Handler(Looper.getMainLooper()).postDelayed({
             progreso.visibility = View.GONE
+            SplashActivity.sesion = true
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3 segundos
 
-        SplashActivity.sesion = true
     }
 }

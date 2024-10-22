@@ -2,11 +2,13 @@ package com.example.feedback3
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.feedback3.SplashActivity.Companion.sesion
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
@@ -37,8 +39,16 @@ class LoginActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (SplashActivity.sesion){
-            Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+
+        when (sesion) {
+            true -> {
+                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+                SplashActivity.sesion = false
+            }
+
+            false -> {
+                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT)
+            }
         }
     }
 
