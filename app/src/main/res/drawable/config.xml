@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Fondo circular -->
     <item>
         <shape android:shape="oval">
             <solid android:color="#E0E0E0"/>
         </shape>
     </item>
 
-    <!-- Ícono del muñequito centrado y ajustado -->
     <item android:gravity="center">
         <vector
             android:width="42dp"
