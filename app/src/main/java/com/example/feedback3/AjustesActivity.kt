@@ -30,7 +30,7 @@ class AjustesActivity:AppCompatActivity() {
         }
 
         btnCerrar.setOnClickListener {
-            Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, SplashActivity::class.java)
             startActivity(intent)
         }

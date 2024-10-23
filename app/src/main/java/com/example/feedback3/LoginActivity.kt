@@ -62,12 +62,17 @@ class LoginActivity: AppCompatActivity() {
                     if (documents.isEmpty) {
                         Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
                     } else {
-                        LoginActivity.modoOscuro =
-                            documents.documents[0].get("modoOscuro") as Boolean
+                        LoginActivity.modoOscuro = documents.documents[0].get("modo") as Boolean
+                        if (modoOscuro is Boolean) {
+                            LoginActivity.modoOscuro = modoOscuro
+                        } else {
+                            LoginActivity.modoOscuro = false // Valor por defecto si el campo no es un Boolean o es null
+                        }
                         activarModo(LoginActivity.modoOscuro)
                         LoginActivity.mail = mail
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show()
                     }
                 }.addOnFailureListener { exception ->
                     Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()

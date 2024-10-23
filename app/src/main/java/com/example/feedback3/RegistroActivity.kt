@@ -53,6 +53,7 @@ class RegistroActivity: AppCompatActivity() {
                             .add(nuevoUsuario)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "El usuario ${nuevoUsuario.mail} se ha registrado correctamente", Toast.LENGTH_SHORT).show()
+                                LoginActivity.mail = mail
 
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
