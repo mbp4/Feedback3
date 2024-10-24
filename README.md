@@ -1,6 +1,6 @@
 # Feedback3
  
-link al repositorio:
+link al repositorio: https://github.com/mbp4/Feedback3.git
 
 En el ejercicio propuesto se nos pide hacer una aplicación de gestion de novelas, donde se puedan ver, eliminar o añadir nuevas novelas haciendo uso de una base de datos.
 
