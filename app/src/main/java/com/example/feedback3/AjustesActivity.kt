@@ -1,5 +1,6 @@
 package com.example.feedback3
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -30,9 +31,16 @@ class AjustesActivity:AppCompatActivity() {
         }
 
         btnCerrar.setOnClickListener {
-            //Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, SplashActivity::class.java)
-            startActivity(intent)
+            AlertDialog.Builder(this)
+                .setTitle("Cerrar Sesión")
+                .setMessage("¿Estás seguro de que quieres cerrar sesión?")
+                .setPositiveButton("Sí") { _, _ ->
+                    val intent = Intent(this, SplashActivity::class.java)
+                    startActivity(intent)
+                }
+                .setNegativeButton("No", null)
+                .show()
+
         }
     }
 }

@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 val id = documentos.documents[0].id
                 db.collection("dbUsuarios")
                     .document(id)
-                    .update("modoOscuro", modoOscuro)
+                    .update("modo", modoOscuro)
             }
     }
 

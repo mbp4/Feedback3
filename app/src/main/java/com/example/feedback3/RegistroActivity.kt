@@ -28,7 +28,7 @@ class RegistroActivity: AppCompatActivity() {
         editpassword2.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 
         btnAlta2.setOnClickListener {
-            login()
+            registro()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -38,7 +38,7 @@ class RegistroActivity: AppCompatActivity() {
         }
     }
 
-    private fun login() {
+    private fun registro() {
         val mail = editmail2.text.toString()
         val password = editpassword2.text.toString()
 
