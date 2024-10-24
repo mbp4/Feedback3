@@ -1,10 +1,154 @@
-# GestorNovelas_BaseDatos
+# Feedback3
  
-link al repositorio: https://github.com/mbp4/GestorNovelas_BaseDatos.git
+link al repositorio:
 
 En el ejercicio propuesto se nos pide hacer una aplicación de gestion de novelas, donde se puedan ver, eliminar o añadir nuevas novelas haciendo uso de una base de datos.
 
 ## EXPLICACIÓN
+
+### Login
+
+```
+Clase LoginActivity extiende AppCompatActivity:
+    Atributo db de tipo FirebaseFirestore inicializado a firestore
+    Objeto companion:
+        Atributo modoOscuro de tipo Boolean inicializado a false
+        Atributo mail de tipo String inicializado vacío
+
+    Método onCreate(Bundle?):
+        Llamar a la función super.onCreate
+        Asignar layout activity_login como contenido de la vista
+        Declarar variable mail para obtener el campo de texto de correo (editMail)
+        Declarar variable password para obtener el campo de texto de contraseña (editPassword)
+        Configurar el inputType del campo password para ocultar el texto
+        Declarar variable registro para obtener el botón de registro (btnRegistro)
+        Declarar variable loginButton para obtener el botón de iniciar sesión (btnIniciar)
+        
+        Acción del botón loginButton al hacer clic:
+            Llamar a la función hacerLogin con los valores de mail y password
+
+        Acción del botón registro al hacer clic:
+            Crear un Intent para ir a la actividad RegistroActivity
+            Iniciar la actividad con el Intent
+
+        Comprobar el estado de la sesión:
+            Si la sesión está abierta:
+                Mostrar mensaje "Sesión cerrada"
+                Cambiar SplashActivity.sesion a false
+            Si la sesión está cerrada:
+                Mostrar mensaje "Sesión cerrada"
+
+    Método hacerLogin(mail, password):
+        Si el mail y el password no están vacíos:
+            Buscar en la base de datos de usuarios en la colección "dbUsuarios" por el mail y el password
+            Si la consulta tiene éxito:
+                Si no se encuentran documentos:
+                    Mostrar mensaje "Usuario no encontrado"
+                Si se encuentran documentos:
+                    Asignar el valor del campo "modo" del primer documento a LoginActivity.modoOscuro
+                    Si modoOscuro es de tipo Boolean, actualizar LoginActivity.modoOscuro
+                    Si no, asignar false a LoginActivity.modoOscuro por defecto
+                    Llamar a la función activarModo con LoginActivity.modoOscuro
+                    Asignar el mail a LoginActivity.mail
+                    Crear un Intent para ir a la actividad MainActivity
+                    Iniciar la actividad con el Intent
+                    Mostrar mensaje "Sesión iniciada"
+            Si la consulta falla:
+                Mostrar mensaje "Error al iniciar sesión"
+        Si mail o password están vacíos:
+            Mostrar mensaje "Por favor, ingrese un correo electrónico y una contraseña"
+
+    Método activarModo(modoOscuro):
+        Si modoOscuro es true:
+            Activar modo oscuro en la aplicación
+        Si no:
+            Activar modo claro en la aplicación
+        Aplicar los cambios visuales
+```
+
+Esta clase esta formada por una imagen que simule al usuario, campos correspondientes para iniciar sesión (campo para introducir el correo electrónico y la contraseña) y dos botones: 
+
+ -> Botón de inicio de sesión: comprueba que los datos introducidos por el usuario sean validos, en el cualquiera de los casos se muestra un Toast con un mensaje u otro.
+
+ -> Botón de registro: redirige al usuario a la pantalla de registro.
+
+### Registro
+
+```
+Clase RegistroActivity extiende AppCompatActivity:
+    Atributo btnAlta2 de tipo Button (sin inicializar al principio)
+    Atributo btnCancelar2 de tipo Button (sin inicializar al principio)
+    Atributo editmail2 de tipo EditText (sin inicializar al principio)
+    Atributo editpassword2 de tipo EditText (sin inicializar al principio)
+    Atributo db de tipo FirebaseFirestore inicializado a firestore
+
+    Método onCreate(Bundle?):
+        Llamar a la función super.onCreate
+        Asignar layout activity_registro como contenido de la vista
+        Inicializar btnAlta2 con el botón de alta (btnAlta)
+        Inicializar btnCancelar2 con el botón de cancelar (btnCancelar2)
+        Inicializar editmail2 con el campo de correo electrónico (editMail2)
+        Inicializar editpassword2 con el campo de contraseña (editPassword2)
+        Configurar el inputType de editpassword2 para ocultar el texto
+
+        Acción del botón btnAlta2 al hacer clic:
+            Llamar a la función registro
+            Crear un Intent para ir a la actividad MainActivity
+            Iniciar la actividad con el Intent
+
+        Acción del botón btnCancelar2 al hacer clic:
+            Finalizar la actividad actual
+
+    Método registro():
+        Obtener el texto de editmail2 como mail
+        Obtener el texto de editpassword2 como password
+
+        Si mail y password no están vacíos:
+          Buscar en la colección "dbUsuarios" por el correo mail
+            Si la consulta tiene éxito:
+                Si no se encuentran documentos:
+                    Crear un objeto nuevoUsuario con mail, password y modoOscuro = false
+                    Agregar nuevoUsuario a la colección "dbUsuarios"
+                    Si la operación tiene éxito:
+                        Mostrar mensaje "El usuario se ha registrado correctamente"
+                        Asignar el mail a LoginActivity.mail
+                        Crear un Intent para ir a la actividad MainActivity
+                        Iniciar la actividad con el Intent
+                        Finalizar la actividad actual
+                    Si la operación falla:
+                        Mostrar mensaje "Error al registrar el usuario"
+                Si se encuentran documentos:
+                    Mostrar mensaje "El mail ya está registrado"
+            Si la consulta falla:
+                Mostrar mensaje "Error al comprobar el usuario"
+        Si mail o password están vacíos:
+            Mostrar mensaje "Por favor ingresa un correo y contraseña válidos"
+
+```
+
+Esta pantalla permite al usuario crear uno nuevo para poder navegar y esta compuesta por los campos a rellenar (mail y contraseña) y dos botones: 
+
+ -> Botón registrar: le pide al usuario unos datos, de los cuáles comprobará si el correo ya está asignado a un usuario, en el caso de que lo este no podrá avanzar a la siguiente pantalla, y si el registro ha sido exitoso se le indica y se le permite continuar.
+
+ -> Botón cancelar: devuelve al usuario a la página inicial.
+
+### Usuario
+
+Con esta clase creamos un objeto usuario para poder trabajar en las diferentes actividades: 
+
+```
+Clase de datos Usuario:
+    Atributos:
+        mail de tipo String
+        password de tipo String
+        modo de tipo Boolean
+
+    Constructor secundario (sin parámetros):
+        Llama al constructor principal asignando valores por defecto:
+            mail = cadena vacía
+            password = cadena vacía
+            modo = false
+```
 
 ### Pantalla de inicio 
 
@@ -112,6 +256,49 @@ Y también unos botones e imagen identificadora de novelas favoritas:
  -> Botones favoritos: tenemos dos botones, uno de ello marcará la novela como favorita y el otro la quitará de favoritos.
 
  -> Imagen: para indicar al usuario que la novela ya es favorita se muestra una imagen que cambia dependiendo del atributo de la novela que indica si es o no favorita.
+
+ ### Configuración
+
+ En esta clase se le permite al usuario administrar el usuario con el que se ha loggeado, su pseudocódigo sería: 
+
+ ```
+ Clase AjustesActivity extiende AppCompatActivity:
+    Atributo btnMain de tipo Button (sin inicializar al principio)
+    Atributo btnCerrar de tipo Button (sin inicializar al principio)
+    Atributo textoInfo de tipo TextView (sin inicializar al principio)
+
+    Método onCreate(Bundle?):
+        Llamar a la función super.onCreate
+        Asignar layout activity_configuracion como contenido de la vista
+        Inicializar btnMain con el botón (btnMain)
+        Inicializar btnCerrar con el botón (btnCerrarSesion)
+        Inicializar textoInfo con el TextView (textMailInfo)
+        Establecer SplashActivity.sesion como false (cerrar sesión actual)
+        
+        Obtener el correo electrónico guardado en LoginActivity.mail
+        Asignar el correo electrónico al texto de textoInfo
+
+        Acción del botón btnMain al hacer clic:
+            Crear un Intent para ir a la actividad MainActivity
+            Iniciar la actividad con el Intent
+
+        Acción del botón btnCerrar al hacer clic:
+            Crear un cuadro de diálogo de alerta:
+                Título: "Cerrar Sesión"
+                Mensaje: "¿Estás seguro de que quieres cerrar sesión?"
+                Botón positivo ("Sí"):
+                    Crear un Intent para ir a la actividad SplashActivity
+                    Iniciar la actividad con el Intent
+                Botón negativo ("No"):
+                    No hacer nada
+            Mostrar el diálogo de alerta
+ ```
+ Esta clase contiene una imagen para simular el usuario, una espacio donde se muestra el correo con el que se ha iniciado sesión y dos botones: 
+
+  -> Botón cerrar sesión: este botón cierra la sesión después de que el usuario le confirme.
+
+  -> Botón cancelar: este botón devuelve al usuario a la pantalla anterior.
+
 
  ### Novela
 
@@ -270,8 +457,8 @@ Clase NuevaNovelaActivity extiende ComponentActivity:
                 Finalizar la actividad
             Si ocurre un error al guardar:
                 Mostrar mensaje de error con el motivo del fallo
-
 ```
+
 
 En este activity nos encontraremos varios TextEdit en los cuales el usuario podrá añadir la información necesaria para crear una nueva novela, después encontraremos un botón encargado de guardar la nueva novela y añadirla a la lista y otro botón que cancelará la operación y devuelve al usuario a la pantalla inicial. 
 
@@ -279,14 +466,12 @@ En este activity nos encontraremos varios TextEdit en los cuales el usuario podr
 
 Para realizar la aplicacion se ha hecho uso del anterior proyecto como base y este ha sido modificado.
 
-En el proyecto se nos solicitaba que nuestra aplicación de gestor de novelas contase con una base de datos que guardara estas, por lo tanto los cambios han sido: 
+En el proyecto se nos solicitaba que nuestra aplicación de gestor de novelas contase con una base de datos que guardara usuarios, por lo tanto los cambios han sido: 
 
- -> Lo primero será cambiar la lista de novelas por una base de datos que creamos desde firebase con todos los elementos necesarios. 
- 
- -> Después debemos cambiar los botones correspondientes:
- 
-    -> Botón borrar: debemos hacer que el botón borre la novela de la base de datos, haciendo que los datos ya no esten en esta, ademas de esto se añade un pop up que confirma que el              usuario desea borrar la novela de la base de datos. Cuando esta se borre aparecerá un mensaje que indicará al usuario si se ha borrado o no.
+ -> Lo primero es añadir a nuestra base de datos una nueva colección de usuarios con todos sus atributos.
 
-    -> Botón guardar: debemos hacer que el botón guarde la novela en la base de datos, haciendo que los datos se actualicen, cuando esta se añada aparecerá un mensaje que indicará al              usuario si se ha añadido o no.
+ -> Luego unas clases que se muestren al iniciar que serán el login o el registro para poder utilizar a un usuario. 
 
- -> Y por último para no tener informacion innecesaria en nuestro programa borraremos el repositorio de novelas que se tenía en la anterior práctica.
+ -> Una clase configuracion para poder cerrar la sesión del usuario. 
+
+ -> Y para que sea más visual un splash activity que simule el cierre de sesión y devuelva al usuario al inicio.
