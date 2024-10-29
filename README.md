@@ -323,7 +323,8 @@ Para esto haremos uso de Firebase, con esto podremos hacer uso de una base de da
 
 Visualmente uno de los elementos se vería así: 
 
-<img width="1145" alt="Captura de pantalla 2024-10-08 a las 12 10 29" src="https://github.com/user-attachments/assets/b95ccd0f-3be7-4b64-9b46-d6d999623247">
+<img width="1163" alt="Captura de pantalla 2024-10-29 a las 12 24 30" src="https://github.com/user-attachments/assets/1aebd0ed-c28c-4233-b789-45144ceb699f">
+
 
 ### Adaptador para las Novelas
 
