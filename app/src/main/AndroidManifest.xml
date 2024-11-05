@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestorNovelas_BaseDatos"
         tools:targetApi="31">
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -68,5 +69,6 @@
         </activity>
 
     </application>
+
 
 </manifest>

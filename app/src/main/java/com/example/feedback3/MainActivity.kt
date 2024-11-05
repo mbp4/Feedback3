@@ -164,7 +164,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun borrarNovela(novela: Novela) {
-        db.collection("novelas")
+        db.collection("dbNovelas")
             .whereEqualTo("titulo", novela.titulo)
             .get()
             .addOnSuccessListener { documentos ->
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity() {
     //con este metodo buscamos la novela que el usuario ha elegido y la borramos de la base de datos dandole a la vez un mensaje para que sepa que se ha eliminado correctamente
 
     private fun añadirFavorita(novela: Novela) {
-        db.collection("novelas")
+        db.collection("dbNovelas")
             .whereEqualTo("titulo", novela.titulo)
             .get()
             .addOnSuccessListener { documentos ->
